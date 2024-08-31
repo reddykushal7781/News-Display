@@ -1,25 +1,80 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import Navbar from './components/Navbar.js';
+import News from './components/News.js';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// To get all this use rccp(along with properties) or rcc(react class based component)
+
+export default class App extends Component {
+  // name='Kushal'
+  // getUrl = "";
+
+  render() {
+    return (
+      <>
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route
+              
+              exact path='/' element={ 
+              <>
+                 
+                  <News key="general"  pageSize={16} category={`general`} />
+              </>
+            }/>
+
+            <Route
+              
+              exact path='/sports' element={
+                <>
+                   
+                  <News key="sports" pageSize={16} category={`sports`} />
+                </>
+              } />
+            
+            <Route
+              
+              exact path='/business' element={
+              <>
+                 
+                  <News key="business"  pageSize={16} category={`business`} />
+              </>
+            } />
+            <Route path='/entertainment' element={
+              <>
+                 
+                <News key="entertainment" pageSize={16} category={`entertainment`} />
+              </>
+            } />
+            <Route path='/science' element={
+              <>
+                 
+                <News key="" pageSize={16} category={`science`} />
+              </>
+            } />
+            
+            <Route path='/technology' element={
+              <>
+                 
+                <News pageSize={16} category={`technology`} />
+              </>
+            } />
+            <Route path='/health' element={
+              <>
+                 
+                <News pageSize={16} category={`health`} />
+              </>
+            }/>
+              
+            
+        </Routes>
+        </BrowserRouter>
+        <div>
+          {/* This is Cool! {this.name} */}
+          
+        </div>
+      </>
+    )
+  }
 }
-
-export default App;
