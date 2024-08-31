@@ -6,20 +6,20 @@ export default class News extends Component {
 
     
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         // console.log("inside constructor from news component");
         this.state = {
             articles: [],
             loading: false,
             pageNo:1
         }
+        document.title = "NewsApp - "+this.props.category.charAt(0).toUpperCase()+this.props.category.slice(1);
     }
 
-    async componentDidMount() { 
-        // console.log("inside component did Mount");
-        let url = `https://newsapi.org/v2/everything?q=${this.props.category}&from=2024-08-30&to=2024-08-30&sortBy=popularity&apiKey=768dd7404f77445882f43cef80cd33db&page=1&pageSize=${this.props.pageSize}`;
-        this.setState({loading: true});
+    async updateNews() { 
+        let url = `https://newsapi.org/v2/everything?q=${this.props.category}&from=2024-08-30&to=2024-08-30&sortBy=popularity&apiKey=768dd7404f77445882f43cef80cd33db&page=${this.state.pageNo}&pageSize=${this.props.pageSize}`;
+        this.setState({ loading: true });
         let data = await fetch(url);
         let parsedData = await data.json();
         this.setState({
@@ -28,42 +28,34 @@ export default class News extends Component {
         });
     }
 
+    async componentDidMount() { 
+        
+        this.updateNews();
+    }
+
     handlePreviousClick = async() => { 
-        // console.log("Previous");
-        let url = `https://newsapi.org/v2/everything?q=${this.props.category}&from=2024-08-30&to=2024-08-30&sortBy=popularity&apiKey=768dd7404f77445882f43cef80cd33db&page=${this.state.pageNo - 1}&pageSize=${this.props.pageSize}`;
-        this.setState({ loading: true });
-        let data = await fetch(url);
-        let parsedData = await data.json();
-        this.setState({
-            pageNo: this.state.pageNo - 1,
-            articles: parsedData.articles,
-            loading: false
-        })
-        // console.log(this.state.pageNo);
+        
+        await this.setState({ pageNo: this.state.pageNo - 1 });
+        this.updateNews();
+
     }
 
     handleNextClick = async () => {
-        // console.log("Next");
-        if (this.state.pageNo + 1 > Math.ceil(this.state.totalResults / this.props.pageSize)) { }
-        else { 
-            let url = `https://newsapi.org/v2/everything?q=${this.props.category}&from=2024-08-30&to=2024-08-30&sortBy=popularity&apiKey=768dd7404f77445882f43cef80cd33db&page=${this.state.pageNo + 1}&pageSize=${this.props.pageSize}`;
-            this.setState({ loading: true });
-            let data = await fetch(url);
-            let parsedData = await data.json();
-            this.setState({
-                pageNo: this.state.pageNo + 1,
-                articles: parsedData.articles,
-                loading: false
-            })
-            // console.log(this.state.pageNo);
-        }
+       
+        await this.setState({ pageNo: this.state.pageNo + 1 });
+        this.updateNews();
         
     }
 
     render() {
         return (
             <div className='container my-4'>
-                <h2 className='text-center'>NewsApp - Top HeadLines</h2>
+                <h2 className='text-center'
+                    style={{margin:'35px 0px'}}
+                >
+                    NewsApp - Top Lines from {this.props.category.charAt(0).toUpperCase() + this.props.category.slice(1)}
+
+                </h2>
                 {this.state.loading &&
                     <div className='text-center my-10'>
                         <Spinner />
@@ -86,10 +78,13 @@ export default class News extends Component {
                         <div className='col-md-3' key={element.url}>
                             
                             <NewsItems
-                                title={!element.title==="[Removed]" ? element.title.split(' ').slice(0, 10).join(' ') : ""}
-                                description={element.description.split(' ').slice(0,10).join(' ')}
-                                imageUrl={element.urlToImage}
-                                newsUrl={element.url}
+                                    title={!element.title === "[Removed]" ? element.title.split(' ').slice(0, 10).join(' ') : ""}
+                                    description={element.description.split(' ').slice(0, 10).join(' ')}
+                                    imageUrl={element.urlToImage}
+                                    newsUrl={element.url}
+                                    author={element.author}
+                                    date={element.publishedAt}
+                                    publisher={element.source.name}
                             />
                         </div>
 

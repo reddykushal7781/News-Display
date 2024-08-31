@@ -20,7 +20,7 @@ export default class App extends Component {
               exact path='/' element={ 
               <>
                  
-                  <News key="general"  pageSize={16} category={`general`} />
+                  <News key='' pageSize={16} category={`general`} />
               </>
             }/>
 
