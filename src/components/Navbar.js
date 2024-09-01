@@ -20,7 +20,7 @@ export default class Navbar extends Component {
                                     <a className="nav-link" href="/">Link</a>
                                 </li> */}
                                 <li className="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <a className="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Categories
                                     </a>
                                     <ul className="dropdown-menu">
@@ -30,9 +30,9 @@ export default class Navbar extends Component {
                                         <li><Link className="dropdown-item" to="/science">Science</Link></li>
                                         <li><Link className="dropdown-item" to="/entertainment">Entertainment</Link></li>
                                         <li><Link className="dropdown-item" to="/sports">Sports</Link></li>
-                                        <li><a className="dropdown-item" href="#">Another action</a></li>
+                                        <li><a className="dropdown-item" >Another action</a></li>
                                         <li><hr className="dropdown-divider"/></li>
-                                        <li><a className="dropdown-item" href="#">Something else here</a></li>
+                                        <li><a className="dropdown-item" >Something else here</a></li>
                                     </ul>
                                 </li>
                                 {/* <li className="nav-item">

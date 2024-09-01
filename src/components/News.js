@@ -16,7 +16,7 @@ export default class News extends Component {
             pageNo: 1,
             // totalResults: 0
         }
-        document.title = "NewsApp - "+this.props.category.charAt(0).toUpperCase()+this.props.category.slice(1);
+        // document.title = "NewsApp - "+this.props.category.charAt(0).toUpperCase()+this.props.category.slice(1);
     }
 
     async updateNews() { 
@@ -79,13 +79,13 @@ export default class News extends Component {
                     NewsApp - Top Lines from {this.props.category.charAt(0).toUpperCase() + this.props.category.slice(1)}
 
                 </h2>
-                {/* {this.state.loading &&
+                {/* this.state.loading &&
                     <div className='text-center my-10'>
                         <Spinner />
-                    </div>
-                    } */}
+                    </div> */}
+                    
 
-                {/* Cool Stuff Below */}
+                  {/* Cool Stuff Below  */}
 
                 <InfiniteScroll
                     dataLength={this.state.articles.length}
@@ -100,7 +100,7 @@ export default class News extends Component {
 
                     {this.state.articles.map((element) => {
 
-                        {/* md - > medium device-> if width of device is medium */ }
+                        /* md - > medium device-> if width of device is medium */ 
                         if (!element || !element.description) {
                             return null;
                         }
@@ -129,13 +129,6 @@ export default class News extends Component {
                     
                 </InfiniteScroll>
 
-                {/* <div className='container d-flex justify-content-between'>
-                    <button 
-                        disabled={this.state.pageNo<=1}
-                        type="button" className="btn btn-info" onClick={this.handlePreviousClick}>&larr; Previous</button>
-                    <button type="button" className="btn btn-info" onClick={this.handleNextClick}>Next &rarr;</button>
-
-                </div> */}
 
             </div>
         )
