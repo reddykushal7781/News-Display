@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Navbar from './components/Navbar.js';
 import News from './components/News.js';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import LoadingBar from 'react-top-loading-bar'
 
 // To get all this use rccp(along with properties) or rcc(react class based component)
 
@@ -9,9 +10,22 @@ export default class App extends Component {
   // name='Kushal'
   // getUrl = "";
 
+  state = {
+    progress: 0
+  }
+  setProgress = (progress) => { 
+    this.setState({ progress: progress });
+  }
+
   render() {
     return (
       <>
+        <LoadingBar
+          color='#f11946'
+          progress={this.state.progress}
+          onLoaderFinished={() => this.setProgress(0)}
+        />
+
         <BrowserRouter>
           <Navbar />
           <Routes>
@@ -20,7 +34,7 @@ export default class App extends Component {
               exact path='/' element={ 
               <>
                  
-                  <News key='' pageSize={16} category={`general`} />
+                  <News setProgress={this.setProgress} key='' pageSize={16} category={`general`} />
               </>
             }/>
 
@@ -29,7 +43,7 @@ export default class App extends Component {
               exact path='/sports' element={
                 <>
                    
-                  <News key="sports" pageSize={16} category={`sports`} />
+                  <News setProgress={this.setProgress} key="sports" pageSize={16} category={`sports`} />
                 </>
               } />
             
@@ -38,32 +52,32 @@ export default class App extends Component {
               exact path='/business' element={
               <>
                  
-                  <News key="business"  pageSize={16} category={`business`} />
+                  <News setProgress={this.setProgress} key="business"  pageSize={16} category={`business`} />
               </>
             } />
             <Route path='/entertainment' element={
               <>
                  
-                <News key="entertainment" pageSize={16} category={`entertainment`} />
+                <News setProgress={this.setProgress} key="entertainment" pageSize={16} category={`entertainment`} />
               </>
             } />
             <Route path='/science' element={
               <>
                  
-                <News key="" pageSize={16} category={`science`} />
+                <News setProgress={this.setProgress} key="" pageSize={16} category={`science`} />
               </>
             } />
             
             <Route path='/technology' element={
               <>
                  
-                <News pageSize={16} category={`technology`} />
+                <News setProgress={this.setProgress} pageSize={16} category={`technology`} />
               </>
             } />
             <Route path='/health' element={
               <>
                  
-                <News pageSize={16} category={`health`} />
+                <News setProgress={this.setProgress} pageSize={16} category={`health`} />
               </>
             }/>
               
