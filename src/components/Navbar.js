@@ -16,9 +16,9 @@ export default class Navbar extends Component {
                                 <li className="nav-item">
                                     <Link className="nav-link active" aria-current="page" to="/">Home</Link>
                                 </li>
-                                <li className="nav-item">
+                                {/* <li className="nav-item">
                                     <a className="nav-link" href="/">Link</a>
-                                </li>
+                                </li> */}
                                 <li className="nav-item dropdown">
                                     <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Categories
@@ -35,14 +35,14 @@ export default class Navbar extends Component {
                                         <li><a className="dropdown-item" href="#">Something else here</a></li>
                                     </ul>
                                 </li>
-                                <li className="nav-item">
+                                {/* <li className="nav-item">
                                     <a className="nav-link disabled" aria-disabled="true">Disabled</a>
-                                </li>
+                                </li> */}
                             </ul>
-                            <form className="d-flex" role="search">
+                            {/* <form className="d-flex" role="search">
                                 <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
                                     <button className="btn btn-outline-success" type="submit">Search</button>
-                            </form>
+                            </form> */}
                         </div>
                     </div>
                 </nav>
